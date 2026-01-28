@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -36,3 +36,11 @@ class PartyResponse(PartyBase):
     
     class Config:
         from_attributes = True
+
+
+class PartyWithLinksResponse(PartyResponse):
+    """Extended party response with URLs and QR code"""
+    manage_url: str
+    display_url: str
+    add_url: str
+    qr_code: Optional[str] = None

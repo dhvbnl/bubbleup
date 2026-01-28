@@ -6,3 +6,6 @@ pydantic==2.12.5
 pydantic-settings==2.1.0
 python-dotenv==1.2.1
 alembic==1.18.1
+qrcode==8.0
+pillow==11.1.0
+websockets==14.1

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 from app.models.party import Party, PartyStatus
 from app.models.word import Word
@@ -16,8 +16,8 @@ def create_party(db: Session) -> Party:
 
 
 def get_party(db: Session, party_id: int) -> Optional[Party]:
-    """Get a party by ID"""
-    return db.query(Party).filter(Party.id == party_id).first()
+    """Get a party by ID with eager loading of words"""
+    return db.query(Party).options(joinedload(Party.words)).filter(Party.id == party_id).first()
 
 
 def update_party_status(db: Session, party_id: int, status: PartyStatus) -> Optional[Party]:
